@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student and Teacher Buttons</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 12px; /* Rounded edges */
+            border: 1px solid #ccc;
+            background-color: #f0f0f0;
+            transition: background-color 0.3s ease;
+        }
+        h1 {
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>HAPM LMS</h1>
+    <div class="container">
+        <button onclick="studentFunction()">Student</button>
+        <button onclick="teacherFunction()">Teacher</button>
+    </div>
+
+    <script>
+        function studentFunction() {
+            alert("Student button clicked!");
+        }
+
+        function teacherFunction() {
+            alert("Teacher button clicked!");
+        }
+    </script>
+</body>
+</html>
