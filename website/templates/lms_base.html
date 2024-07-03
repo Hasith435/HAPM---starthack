@@ -22,11 +22,6 @@
   {% block style %} 
 
   <style>
-
-    {% block style_elements %}
-
-    {% endblock %}
-
     nav {
         position: absolute;
         top: 0;
@@ -50,6 +45,8 @@
     nav a:hover {
         color: #ddd;
     }
+
+    {% block style_elements %} {% endblock %}
 </style>
   
   {% endblock %}
@@ -58,8 +55,8 @@
 
 <body>
   <nav>
-    <a href="#">Home</a>
-    <a href="#">Logout</a>
+    <a href="/subjects">Home</a>
+    <a href="/logout">Logout</a>
 </nav>
 
   {% with messages = get_flashed_messages(with_categories=true) %} {% if

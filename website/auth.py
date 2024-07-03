@@ -8,12 +8,13 @@ auth = Blueprint("auth", __name__)
 
 @auth.route("/logout")
 def logout():
+    logout_user()
     return redirect(url_for("auth.login"))
 
 @auth.route("/signUp", methods=['GET', 'POST'])
 def sign_up():
 
-    if request.method == 'POST' and request.form.get('register_form'):
+    if request.method == 'POST':
         first_name = request.form.get('first_name')
         last_name = request.form.get('last_name')
         email = request.form.get('email')
@@ -36,6 +37,8 @@ def sign_up():
             db.session.commit()
             flash('Account Created!', category='success')
 
+            login_user(new_user, remember=True)
+
             return redirect(url_for('views.subjects'))
 
     return render_template("Signin.html")
@@ -43,7 +46,7 @@ def sign_up():
 @auth.route("/login", methods=['GET', 'POST'])
 def login():
 
-    if request.method == 'POST' and request.form.get('login_form'):
+    if request.method == 'POST':
         print('post request login')
         email = request.form.get('email')
         password = request.form.get('password')
@@ -53,6 +56,7 @@ def login():
         if user:
             if check_password_hash(user.password, password):
                 flash('Logged in successfully', category='success')
+                login_user(user, remember=True)
                 return redirect(url_for('views.learner_type'))
             else:
                 flash('Incorrect password, try again', category='error')
