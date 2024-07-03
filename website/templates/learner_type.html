@@ -7,25 +7,54 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            font-size: 18px; /* Increased base font size */
             background-color: #f0f8ff;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
             height: 100vh;
+            line-height: 1.6; /* Increased line height for better readability */
+        }
+        nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #6200ea; /* Purple background */
+            color: #fff;
+            padding: 15px 20px; /* Increased padding */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            font-size: 20px; /* Increased font size for navigation */
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 20px;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: #ddd;
         }
         .container {
             background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px; /* Increased padding */
+            border-radius: 12px; /* Slightly more rounded corners */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Slightly larger shadow */
             text-align: center;
             width: 100%;
-            max-width: 400px;
+            max-width: 500px; /* Increased max width */
+            margin-top: 70px; /* Adjusted for the navigation bar */
         }
         h1 {
             color: #333;
+            font-size: 28px; /* Increased font size */
+            margin-bottom: 20px; /* Increased margin below heading */
         }
         form {
             margin-top: 20px;
@@ -34,26 +63,28 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            margin-bottom: 20px;
+            margin-bottom: 30px; /* Increased margin bottom */
         }
         .radio-group label {
-            margin-bottom: 10px;
-            font-size: 18px;
+            margin-bottom: 15px; /* Increased margin bottom */
+            font-size: 20px; /* Increased font size */
         }
         .radio-group input[type="radio"] {
             margin-right: 10px;
         }
         input[type="submit"] {
-            background-color: #007bff;
+            background-color: #6200ea; /* Purple background */
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 15px 30px; /* Increased padding */
+            border-radius: 8px; /* Slightly more rounded corners */
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px; /* Increased font size */
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Added transition for transform */
         }
         input[type="submit"]:hover {
-            background-color: #0056b3;
+            background-color: #3700b3; /* Darker purple on hover */
+            transform: scale(1.05); /* Slightly increase size on hover */
         }
     </style>
     <script>
