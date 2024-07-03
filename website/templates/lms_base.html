@@ -19,28 +19,48 @@
 
   {% block title %} {% endblock %}
 
-  {% block style %} {% endblock %}
+  {% block style %} 
+
+  <style>
+
+    {% block style_elements %}
+
+    {% endblock %}
+
+    nav {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #6200ea;
+        color: #fff;
+        padding: 10px 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    nav a {
+        color: #fff;
+        text-decoration: none;
+        margin-right: 20px;
+        font-size: 18px;
+        transition: color 0.3s ease;
+    }
+    nav a:hover {
+        color: #ddd;
+    }
+</style>
+  
+  {% endblock %}
   
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbar"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbar">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" id="home" href="/subjects">Home</a>
-        <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
-      </div>
-    </div>
-  </nav>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Logout</a>
+</nav>
 
   {% with messages = get_flashed_messages(with_categories=true) %} {% if
     messages %} {% for category, message in messages %} {% if category ==
