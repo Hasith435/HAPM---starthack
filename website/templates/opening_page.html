@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student and Teacher Buttons</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 18px; /* Increased base font size */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f8ff; /* Light blue background */
+            line-height: 1.6; /* Increased line height for better readability */
+        }
+        nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #6200ea; /* Purple background */
+            color: #fff;
+            padding: 15px 20px; /* Increased padding */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            font-size: 20px; /* Increased font size for navigation */
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 20px;
+            padding: 8px 12px; /* Added padding */
+            border: 1px solid #fff; /* Added border */
+            border-radius: 5px; /* Rounded border */
+            transition: color 0.3s ease, border-color 0.3s ease; /* Transition for color and border */
+        }
+        nav a:hover {
+            color: #ddd;
+            border-color: #ddd; /* Change border color on hover */
+        }
+        .title {
+            font-family: 'Roboto', sans-serif; /* Custom font */
+            font-size: 48px; /* Increased font size */
+            color: #6200ea; /* Purple color */
+            margin-bottom: 20px; /* Margin below the title */
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 30px; /* Increased padding */
+            border-radius: 12px; /* Rounded edges */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Slightly larger shadow */
+            width: 100%;
+            max-width: 400px; /* Set max width */
+            margin-top: 30px; /* Adjusted for the navigation bar */
+        }
+        .subheading {
+            font-size: 24px; /* Subheading font size */
+            color: #333; /* Subheading color */
+            margin-bottom: 20px; /* Margin below the subheading */
+        }
+        button {
+            padding: 15px 30px; /* Increased padding */
+            margin: 10px;
+            font-size: 18px; /* Increased font size */
+            cursor: pointer;
+            border-radius: 12px; /* Rounded edges */
+            border: 1px solid #ccc;
+            background-color: #6200ea; /* Purple background */
+            color: white; /* White text color */
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Added transition for transform */
+        }
+        button:hover {
+            background-color: #3700b3; /* Darker purple on hover */
+            transform: scale(1.05); /* Slightly increase size on hover */
+        }
+    </style>
+    <script>
+        function studentFunction() {
+            alert("Student button clicked!");
+        }
+
+        function teacherFunction() {
+            alert("Teacher button clicked!");
+        }
+    </script>
+</head>
+<body>
+    <nav>
+        <a href="#">Home</a>
+    </nav>
+    <h1 class="title">HAPM LMS</h1>
+    <div class="container">
+        <h2 class="subheading">Choose login method</h2>
+        <button onclick="studentFunction()">Student</button>
+        <button onclick="teacherFunction()">Teacher</button>
+    </div>
+</body>
+</html>
