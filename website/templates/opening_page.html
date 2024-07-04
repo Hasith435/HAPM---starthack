@@ -81,21 +81,12 @@
             transform: scale(1.05); /* Slightly increase size on hover */
         }
     </style>
-    <script>
-        function studentFunction() {
-            alert("Student button clicked!");
-        }
-
-        function teacherFunction() {
-            alert("Teacher button clicked!");
-        }
-    </script>
 </head>
 <body>
     <h1 class="title">HAPM LMS</h1>
     <div class="container">
         <h2 class="subheading">Choose login method</h2>
-        <button onclick="studentFunction()">Student</button>
+        <button onclick="window.location.href='/login'">Student</button>
         <button onclick="teacherFunction()">Teacher</button>
     </div>
 </body>

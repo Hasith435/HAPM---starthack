@@ -39,7 +39,7 @@ def sign_up():
 
             login_user(new_user, remember=True)
 
-            return redirect(url_for('views.subjects'))
+            return redirect(url_for('views.learner_type'))
 
     return render_template("Signin.html")
 
@@ -57,7 +57,7 @@ def login():
             if check_password_hash(user.password, password):
                 flash('Logged in successfully', category='success')
                 login_user(user, remember=True)
-                return redirect(url_for('views.learner_type'))
+                return redirect(url_for('views.subjects'))
             else:
                 flash('Incorrect password, try again', category='error')
         else:

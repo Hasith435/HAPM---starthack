@@ -5,7 +5,6 @@ views = Blueprint("views", __name__)
 
 # student and teacher login page
 @views.route("/")
-@login_required
 def role_select():
     return render_template("opening_page.html")
 
