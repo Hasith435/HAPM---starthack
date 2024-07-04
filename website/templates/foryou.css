@@ -1,0 +1,139 @@
+*{
+    padding: o;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #f4f4f4;
+}
+.nav{
+    background-color: #6200ea;
+    
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between;
+    color: whitesmoke;
+    font-family: 'Courier New', Courier, monospace;
+    width: 20%;
+    position: fixed;
+    
+}
+
+.logo{
+    border-bottom: solid #9575cd;
+    padding: 10px;
+    display: flex;
+    gap: 3px;
+    cursor: pointer;
+}
+.selection{
+    padding-top: 10px;
+    
+}
+.selection ul li{
+    
+    list-style: none;
+    display: flex;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.selection ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    
+}
+
+.selection ul li a{
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+.w-logout{
+    border-bottom: #9575cd solid;
+}
+
+.nav-s{
+    width: 50px;
+}
+
+.hidden{
+    display: none;
+}
+
+.myname{
+    src: url('arrow_forward_ios_20dp_FILL0_wght400_GRAD0_opsz20.png');
+}
+
+.container{
+    padding-left: 20%;
+
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+
+}
+
+.title{
+    font-size: 50px;
+    margin-left:  25px;
+    padding-top: 25px;
+    font-weight: 400;
+}
+
+.content{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+.x-contianer{
+    padding-left: 50px;
+
+}
+.quiz-box{
+    box-shadow: 8px 8px 5px rgb(110, 110, 110) ;
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+    margin: 25px;
+    
+    background-color: #a190e4;
+    height: 200px;
+    border-radius: 20px;
+    padding: 15px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.quiz-box:hover {
+    transform: scale(1.025); /* Slightly scales up the button on hover */
+}
+.assginment-box:hover {
+    transform: scale(1.025); /* Slightly scales up the button on hover */
+}
+.assginment-box{
+    box-shadow: 8px 8px 5px rgb(110, 110, 110);
+    margin: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+    
+    background-color: #a190e4;
+    height: 200px;
+    border-radius: 20px;
+    padding: 15px;
+    transition: transform 0.2s ease-in-out;
+}
+
+@media(max-width:650px){
+.nav{
+    width: 100vw;
+}
+
+.nav-s{
+    width: 50px;
+}
+
+}
