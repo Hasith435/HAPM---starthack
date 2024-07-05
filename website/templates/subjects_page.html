@@ -13,7 +13,7 @@ body {
     justify-content: center;
     height: 100vh;
     margin: 0;
-    background-color: #d0e7ff; /* Light blue background */
+    background-color: #ffffff; /* Light blue background */
     color: #333;
     text-align: center;
     padding: 0 20px;
@@ -48,9 +48,9 @@ h1 {
 {% endblock %}
 
 
-
+{% block username %}{{username}}{% endblock %}
 
 {% block content %}
-<button class="button" onclick="alert('Computer Science')">Computer Science</button>
+<button class="button" onclick="window.location.href='/comp_sci'">Computer Science</button>
 <button class="button" onclick="alert('Add a new subject')">Add a new subject</button>
 {% endblock %}

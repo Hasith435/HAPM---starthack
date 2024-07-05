@@ -9,7 +9,7 @@ auth = Blueprint("auth", __name__)
 @auth.route("/logout")
 def logout():
     logout_user()
-    return redirect(url_for("auth.login"))
+    return redirect(url_for("views.role_select"))
 
 @auth.route("/signUp", methods=['GET', 'POST'])
 def sign_up():

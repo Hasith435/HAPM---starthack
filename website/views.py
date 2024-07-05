@@ -20,6 +20,10 @@ def learner_type():
 @views.route("/subjects")
 @login_required
 def subjects():
-    return render_template("subjects_page.html")
+    return render_template("subjects_page.html", username=current_user.first_name)
 
 
+@views.route("/comp_sci")
+@login_required
+def comp_sci():
+    return render_template("comp_sci_page.html", username=current_user.first_name)

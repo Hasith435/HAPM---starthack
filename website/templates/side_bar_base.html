@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock %}</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+              body {
+                  font-family: 'Poppins', sans-serif;
+                  margin: 0;
+                  padding: 0;
+                  display: flex;
+                  background-color: #f4f4f9;
+              }
+              .sidebar {
+                  height: 100vh;
+                  width: 250px;
+                  background-color: #6200ea;
+                  color: white;
+                  padding-top: 20px;
+                  position: fixed;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+              }
+              .sidebar h2 {
+                  margin-bottom: 30px;
+                  font-size: 24px;
+                  font-weight: 600;
+                  text-transform: uppercase;
+              }
+              .sidebar a {
+                  width: 100%;
+                  padding-bottom: 15px;
+                  padding-top: 15px;
+                  padding-left: 30px;
+                  text-decoration: none;
+                  font-size: 18px;
+                  color: white;
+                  display: block;
+                  text-align: left;
+                  transition: background-color 0.3s, transform 0.3s;
+              }
+              .sidebar a:hover {
+                  background-color: #7f39fb;
+                  transform: translateX(10px);
+              }
+              .main-content {
+                  margin-left: 250px;
+                  padding: 20px;
+                  flex-grow: 1;
+              }
+              .main-content h1 {
+                  font-size: 36px;
+                  font-weight: 600;
+                  margin-bottom: 20px;
+              }
+              .main-content p {
+                  font-size: 18px;
+                  line-height: 1.6;
+              }
+              .bottom {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+
+
+              {% block style_elements %}{% endblock %}
+    </style>
+    {% block other_style_links %}{% endblock %}
+  </head>
+  <body>
+    <div class="sidebar">
+      <h2>Hello {% block username %}{% endblock %}!</h2>
+      <a href="/subjects">Subjects</a>
+      <a href="#services">Notes</a>
+      <a href="#clients">Quizzes</a>
+
+      <div class="bottom"><h3>logout</h3></div>
+      >
+    </div>
+    <div class="main-content">
+      <div class="container">{% block content %} {% endblock %}</div>
+    </div>
+  </body>
+</html>

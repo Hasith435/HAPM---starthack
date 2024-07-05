@@ -15,3 +15,18 @@ class User(db.Model, UserMixin):
     zip = db.Column(db.String(100000))
     password = db.Column(db.String(150))
     
+# class Teachers(db.Model, UserMixin):
+
+#     #setting up the database for the teachers
+#     id = db.Column(db.Integer, primary_key=True)
+#     email = db.Colum(db.String(150), unique=True)
+#     first_name = db.Column(db.String(150))
+#     last_name = db.Column(db.String(150))
+#     teaching_school = db.Colmn(db.String(200))
+#     teaching_style = db.Column(db.String(200))
+#     teaching_subjects = db.Column(db.String(500))
+#     first_language = db.Column(db.String(300))
+
+
+# class Notes(db.Model, UserMixin):
+#     pass

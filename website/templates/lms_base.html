@@ -78,6 +78,7 @@
     {% endif %} {% endfor %} {% endif %} {% endwith %}
 
     <div class="container">
+      <h3>Hello {% block username %}{% endblock %}!</h3>
         {% block content %}
 
         {% endblock %}
