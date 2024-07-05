@@ -27,3 +27,9 @@ def subjects():
 @login_required
 def comp_sci():
     return render_template("comp_sci_page.html", username=current_user.first_name)
+
+@views.route("/chemistry")
+@login_required
+def chemistry():
+    return render_template("chemistry_index.html")
+
