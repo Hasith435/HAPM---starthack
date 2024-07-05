@@ -1,0 +1,102 @@
+{% extends "initialization_base.html" %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block style %}
+<style>
+    body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #f0f8ff, #c8e7ff); /* Gradient from light blue to lighter blue */
+            line-height: 1.6;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            margin: 100px auto;
+        }
+        h3 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 32px;
+            color: #6200ea; /* Purple color */
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Shadow for emphasis */
+        }
+        .form-group {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            color: #6200ea;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 15px 30px;
+            margin-top: 20px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 30px;
+            border: none;
+            background: linear-gradient(135deg, #6200ea, #3700b3); /* Gradient from purple to darker purple */
+            color: white;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        button:hover {
+            background: linear-gradient(135deg, #3700b3, #6200ea); /* Reverse gradient on hover */
+            transform: scale(1.05); /* Slightly increase size on hover */
+        }
+        a {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            color: #6200ea;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<h3><strong>Login</strong></h3>
+
+        <form method="POST">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter password" required>
+            </div>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <a href="/signup-teacher">New User? Register here</a>
+    </div>
+
+
+{% endblock %}

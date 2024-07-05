@@ -1,0 +1,60 @@
+{% extends "lms_base.html" %}
+
+{% block title %}
+<title>Subjects</title>
+{% endblock %}
+
+{% block style_elements %}
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #ffffff; /* Light blue background */
+    color: #333;
+    text-align: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+h1 {
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    color: #333;
+}
+.button {
+    padding: 15px 30px;
+    margin: 15px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 12px;
+    border: none;
+    background-color: #6200ea;
+    color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+.button:hover {
+    background-color: #3700b3;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+}
+.button:active {
+    transform: translateY(1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+{% endblock %}
+
+
+{% block username %}{{username}}{% endblock %}
+
+{% block content %}
+
+
+<button class="button" onclick="window.location.href='/comp_sci'">Computer Science</button>
+<button class="button" onclick="window.location.href='/chemistry'">Chemistry</button>
+<button class="button" onclick="alert('Add a new subject')">Add a new subject</button>
+
+{% endblock %}

@@ -8,13 +8,13 @@ views = Blueprint("views", __name__)
 def role_select():
     return render_template("opening_page.html")
 
+
+# STUDENT PAGES
 # Page to select what type of learner the student is
 @views.route("/learner_type")
 @login_required
 def learner_type():
     return render_template("learner_type.html")
-
-
 
 # subject selection page
 @views.route("/subjects")
@@ -33,3 +33,16 @@ def comp_sci():
 def chemistry():
     return render_template("chemistry_index.html")
 
+
+
+#TEACHER PAGES
+
+@views.route("/subjects_teachers")
+@login_required
+def subjects_teachers():
+    return render_template("subjects_page_teachers.html", subjects=["Chemistry, Physics, Maths"])
+
+@views.route("/comp_sci_teachers")
+@login_required
+def comp_sci_teachers():
+    return render_template("comp_sci_page.html", username=current_user.first_name)

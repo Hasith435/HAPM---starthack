@@ -4,22 +4,14 @@ from os import path
 from flask_login import LoginManager
 
 db = SQLAlchemy()
-DB_STUDENTS = "database_students.db"
-# DB_TEACHERS = "database_teachers.db"
-# DB_NOTES = "database_notes.db"
+DB_NAME = "database_students.db"
 
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'hfdjshgjkfd'
 
-    db_path_students = path.join(app.instance_path, '../website', DB_STUDENTS)
-    app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{db_path_students}"
-
-    # db_path_teachers = path.join(app.instance_path, '../website', DB_TEACHERS)
-    # app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{db_path_teachers}"
-
-    # db_path_notes = path.join(app.instance_path, '../website', DB_NOTES)
-    # app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{db_path_notes}"
+    db_path = path.join(app.instance_path, '../website', DB_NAME)
+    app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{db_path}"
 
     db.init_app(app)
 
@@ -29,7 +21,7 @@ def create_app():
     app.register_blueprint(views, url_prefix="/")
     app.register_blueprint(auth, url_prefix="/")
 
-    from .models import User
+    from .models import Student, Teacher, Note
 
     create_database(app)
 
@@ -39,30 +31,14 @@ def create_app():
 
     @login_manager.user_loader
     def load_user(id):
-        return User.query.get(int(id))
+        return Student.query.get(int(id))
 
     return app
 
 def create_database(app):
-    if not path.exists('website/' + DB_STUDENTS):
+    if not path.exists('website/' + DB_NAME):
         with app.app_context():
             db.create_all()
             print("Database created")
     else:
-        print("STUDENT Database already exists")
-
-
-    # if not path.exists('website/' + DB_TEACHERS):
-    #     with app.app_context():
-    #         db.create_all()
-    #         print("Database created")
-    # else:
-    #     print("TEACHER Database already exists")
-
-
-    # if not path.exists('website/' + DB_NOTES):
-    #     with app.app_context():
-    #         db.create_all()
-    #         print("Database created")
-    # else:
-    #     print("NOTES Database already exists")
+        print("Database already exists")

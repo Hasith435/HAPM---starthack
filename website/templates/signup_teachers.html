@@ -1,0 +1,83 @@
+{% extends "initialization_base.html" %}
+
+{% block title %} Sign Up {% endblock %}
+
+{% block content %}
+
+<form method="POST" id="register_form">
+  <br />
+  <h3 align="center">Sign Up</h3>
+
+  <div class="col-md-6">
+    <label for="first_name" class="form-label">First Name</label>
+    <input type="text" class="form-control" id="first_name" name="first_name" />
+  </div>
+
+  <div class="col-md-6">
+    <label for="last_name" class="form-label">Last Name</label>
+    <input type="text" class="form-control" id="last_name" name="last_name" />
+  </div>
+
+  <div class="col-md-6">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" class="form-control" id="email" name="email"/>
+  </div>
+
+  <div class="col-md-6">
+    <label for="password1" class="form-label">Password</label>
+    <input type="password" class="form-control" id="password1" name="password1"/>
+  </div>
+
+  <div class="col-md-6">
+    <label for="password2" class="form-label">Confirm Password</label>
+    <input type="password" class="form-control" id="password2" name="password2" />
+  </div>
+
+  <div class="col-12">
+    <label for="school" class="form-label">School/University</label>
+    <input
+      type="text"
+      class="form-control"
+      id="school"
+      name="school"
+      placeholder="Enter school/university"
+    />
+  </div>
+
+  <div class="col-12">
+    <label for="learning-style">Select Learning Style:</label>
+        <select id="learning-style" name="learning-style">
+            <option value="visual">Visual</option>
+            <option value="auditory">Auditory</option>
+            <option value="multi-modal">Multi-Modal</option>
+        </select>
+  </div>
+
+  <div class="col-md-6">
+    <label for="teaching-subjects" class="form-label">Teaching Subjects</label>
+    <input type="text" class="form-control" id="teaching-subjects" name="teaching-subjects"/>
+  </div>
+
+  <div class="col-md-4">
+    <label for="language">Select Language:</label>
+        <select id="language" name="language">
+            <option value="english">English</option>
+            <option value="spanish">Spanish</option>
+            <option value="french">French</option>
+            <option value="german">German</option>
+            <option value="chinese">Chinese</option>
+            <option value="japanese">Japanese</option>
+            <option value="hindi">Hindi</option>
+            <option value="arabic">Arabic</option>
+        </select>
+  </div>
+  
+  <br />
+
+  <div class="col-12 mb-5">
+    <button type="submit" class="btn btn-primary mt-5">Sign Up</button>
+  </div>
+  
+</form>
+
+{% endblock %}
