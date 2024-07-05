@@ -25,6 +25,7 @@
                   position: fixed;
                   display: flex;
                   flex-direction: column;
+                  justify-content: space-between;
                   align-items: center;
                   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
               }
@@ -65,9 +66,7 @@
                   line-height: 1.6;
               }
               .bottom {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
+        padding-bottom: 30px;
       }
 
 
@@ -77,13 +76,15 @@
   </head>
   <body>
     <div class="sidebar">
+        <div>
       <h2>Hello {% block username %}{% endblock %}!</h2>
       <a href="/subjects">Subjects</a>
       <a href="#services">Notes</a>
       <a href="#clients">Quizzes</a>
+      </div>
 
-      <div class="bottom"><h3>logout</h3></div>
-      >
+      <div class="bottom"><a href="/logout">Logout</a></div>
+      
     </div>
     <div class="main-content">
       <div class="container">{% block content %} {% endblock %}</div>
