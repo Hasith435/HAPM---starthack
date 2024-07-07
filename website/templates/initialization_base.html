@@ -4,9 +4,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="vieport" content="width=device-width, initial-scale=1" />
-
     {% block style %} {% endblock %}
 
+    {% block script %} {% endblock %}
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -20,6 +20,7 @@
       crossorigin="anonymous"
     />
     <title>{% block title%}Login{% endblock %}</title>
+    
   </head>
 
   <body>
@@ -42,7 +43,6 @@
     {% endif %} {% endfor %} {% endif %} {% endwith %}
 
     <div class="container">
-
         {% block content %}
 
         {% endblock %}

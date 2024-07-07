@@ -1,136 +1,104 @@
-from flask import Blueprint, render_template, flash, redirect, request, url_for
-from .models import Student, Teacher, Note
+from flask import Blueprint, render_template, flash, redirect, request, url_for, session
 from . import db
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import login_user, login_required, logout_user, current_user
+import pyrebase
 
 auth = Blueprint("auth", __name__)
 
-# these are the auth function for students
-@auth.route("/logout")
-def logout():
-    logout_user()
-    return redirect(url_for("views.role_select"))
+config = {
+        'apiKey': "AIzaSyBDCmYDAF7UkA2l0WxKuvd8kQ298iZrHLw",
+    'authDomain': "brew-crew-7690e.firebaseapp.com",
+    'projectId': "brew-crew-7690e",
+    'storageBucket': "brew-crew-7690e.appspot.com",
+    'messagingSenderId': "1039714422898",
+    'appId': "1:1039714422898:web:979b5d71e4893653ac72eb",
+    'databaseURL' : ''
+        }
 
-@auth.route("/signUp", methods=['GET', 'POST'])
-def sign_up():
+firebase = pyrebase.initialize_app(config)
+auth_firebase = firebase.auth()
 
-    if request.method == 'POST':
-        first_name = request.form.get('first_name')
-        last_name = request.form.get('last_name')
-        email = request.form.get('email')
-        password = request.form.get('password1')
-        confirm_password = request.form.get('password2')
-        school = request.form.get('school')
-        address = request.form.get('address')
-        city = request.form.get('city')
-        zip = request.form.get('zip')
-
-
-        user = Student.query.filter_by(email=email).first()
-
-        if confirm_password == password:
-            if user:
-                print('already there')
-                flash('Email already exists', category='error')
-            else:
-                print('registered')
-                new_user = Student(email=email, first_name=first_name, password=generate_password_hash(password, method='scrypt'), last_name=last_name, school=school, address=address, city=city, zip=zip)
-                db.session.add(new_user)
-                db.session.commit()
-                flash('Account Created!', category='success')
-
-                login_user(new_user, remember=True)
-
-                return redirect(url_for('views.learner_type'))
-        else:
-            flash('Passwords should be the same', category='error')
-
-    return render_template("Signin.html")
-
-@auth.route("/login", methods=['GET', 'POST'])
+# AUTHENTICATION FOR STUDENTS
+@auth.route("/login", methods=['POST', 'GET'])
 def login():
 
+    if 'user' in session:
+        return redirect(url_for("views.subjects"))
 
     if request.method == 'POST':
-        print('post request login')
+        email = request.form.get("email")
+        password = request.form.get("password")
+
+        try:
+            user = auth_firebase.sign_in_with_email_and_password(email, password)
+            print(user)
+            session['user'] = email
+            session['user_id'] = user['localId']
+            session['id_token'] = user['idToken']
+
+            return redirect(url_for("views.subjects"))
+        except:
+            flash("Incorrect password or username", category='error')
+
+    return render_template("login.html")
+
+@auth.route("/sign_up", methods=['POST', 'GET'])
+def sign_up():
+    
+    if request.method == 'POST':
         email = request.form.get('email')
-        password = request.form.get('password')
-
-        user = Student.query.filter_by(email=email).first()
-
-        if user:
-            if check_password_hash(user.password, password):
-                flash('Logged in successfully', category='success')
-                login_user(user, remember=True)
-                return redirect(url_for('views.subjects'))
-            else:
-                flash('Incorrect password, try again', category='error')
-        else:
-            flash('Email does not exist', category='error')
-
-    return render_template('login.html')
-
-
-
-# these are the auth functions for teachers
-@auth.route("/logout_teacher")
-def logout_teacher():
-    logout_user()
-    return redirect(url_for("views.role_select"))
-
-@auth.route("/signup-teacher", methods=['GET', 'POST'])
-def sign_up_teacher():
-    if request.method == 'POST':
         first_name = request.form.get('first_name')
         last_name = request.form.get('last_name')
-        email = request.form.get('email')
-        password = request.form.get('password1')
-        confirm_password = request.form.get('password2')
         school = request.form.get('school')
-        teaching_style = request.form.get('learning-style')
-        teaching_subjects = request.form.get('teaching-subjects')
-        language = request.form.get('language') 
+        # learning_type = 
+        # prefered_language = 
+        # interested_subjects = 
+        password = request.form.get('password1')
+        confirm_password = request.form.get("password2")
 
-        user = Teacher.query.filter_by(email=email).first()
+        print(f"email: {email}")
+        print(f"password: {password}")
 
-        if confirm_password == password:
-            if user:
-                print('already there')
-                flash('Email already exists', category='error')
-            else:
-                print('registered')
-                new_user_teacher = Teacher(email=email, first_name=first_name, last_name=last_name, password=generate_password_hash(password, method='scrypt'), teaching_school=school, teaching_style=teaching_style, teaching_subjects=teaching_subjects, first_language=language)
-                db.session.add(new_user_teacher)
-                db.session.commit()
-                flash('Account Created!', category='success')
+        
 
-                login_user(new_user_teacher, remember=True)
-
-                return redirect(url_for('views.subjects_teachers'))
+        if password == confirm_password:
+            user = auth_firebase.create_user_with_email_and_password(email, password)
+            user_id = user['localId']
+            db.collection("users").document(user_id).set({'email':email,'first_name':first_name, 'last_name':last_name, 'school':school, 'client_type':'student'})
+            return redirect(url_for('views.learner_type'))
         else:
-            flash('Passwords should be the same', category='error')
+            flash("Passwords should match", category='error')
+    
+    return render_template("SignIn.html")
 
-    return render_template("signup_teachers.html")
+@auth.route("/logout", methods=['GET', 'POST'])
+def logout():
+
+    session.pop('user')
+    session.pop('user_id')
+    session.pop('id_token')
+    return redirect(url_for('views.role_select'))
 
 
-@auth.route("/login_teacher", methods=['GET', 'POST'])
-def login_teacher():
+
+# AUTHENTICATION FOR TEACHERS
+@auth.route('/login_teachers', methods=['POST', 'GET'])
+def login_teachers():
+    if 'user' in session:
+        return redirect(url_for("views.subjects"))
+
     if request.method == 'POST':
-        email_form = request.form.get('email')
-        password = request.form.get('password')
+        email = request.form.get("email")
+        password = request.form.get("password")
 
-        user_teacher = Teacher.query.filter_by(email=email_form).first()
-        print(f"teacher: {user_teacher}")
+        try:
+            user = auth_firebase.sign_in_with_email_and_password(email, password)
+            print(user)
+            session['user'] = email
+            session['user_id'] = user['localId']
+            session['id_token'] = user['idToken']
 
-        if user_teacher:
-            if check_password_hash(user_teacher.password, password):
-                flash('Logged in successfully', category='success')
-                login_user(user_teacher, remember=True)
-                return redirect(url_for('views.subjects_teachers'))
-            else:
-                flash('Incorrect password, try again', category='error')
-        else:
-            flash('Email does not exist', category='error')
+            return redirect(url_for("views.subjects"))
+        except:
+            flash("Incorrect password or username", category='error')
 
-    return render_template('login_teacher.html')
+    return render_template("login_teacher.html")
