@@ -1,0 +1,71 @@
+
+
+*{
+    margin: 0;
+    padding:0;
+    font-family: "Playwrite DE Grund", cursive;
+}
+
+body{
+    padding-inline: 10%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #DEEBE9;
+    
+}
+
+.question{
+    display: flex;
+    gap: 5px;
+    margin-bottom: 30px;
+}
+.q-line{
+    width: 5px;
+    background-color: black;
+}
+.answers{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.answer{
+    background-color: #B3C9C6;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 10px;
+    margin-left: 10px;
+}
+
+.answer:hover{
+    background-color: #7AA39B;
+}
+.btn{
+    
+    width: 50px;
+    text-align: center;
+    margin-inline: auto;
+    padding: 7px;
+    cursor: pointer;
+    border-radius: 10%;
+    margin-top: 30px;
+
+}
+
+.img{
+    display: none;
+}
+
+@media(min-width:800px){
+    .container{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+    .img{
+        display: block;
+        max-width: 100%;
+    }
+
+}
