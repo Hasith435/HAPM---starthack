@@ -63,7 +63,7 @@ def sign_up():
             user = auth_firebase.create_user_with_email_and_password(email, password)
             user_id = user['localId']
             db.collection("users").document(user_id).set({'email':email,'first_name':first_name, 'last_name':last_name, 'school':school, 'learning type':learning_type, 'prefered language': prefered_language,'client_type':'student' })
-            return redirect(url_for('auth.login'))
+            return redirect(url_for('views.role_select'))
         else:
             flash("Passwords should match", category='error')
     
@@ -124,7 +124,7 @@ def sign_up_teachers():
             user = auth_firebase.create_user_with_email_and_password(email, password)
             user_id = user['localId']
             db.collection("teachers").document(user_id).set({'email':email,'first_name':first_name, 'last_name':last_name, 'school':school, 'teaching_method':teaching_method, 'teaching_subject': teaching_subject,'language': language,'client_type':'teacher' })
-            return redirect(url_for('auth.login_teacher'))
+            return redirect(url_for('views.role_select'))
         else:
             flash("Passwords should match", category='error')
     

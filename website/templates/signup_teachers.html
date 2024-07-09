@@ -33,16 +33,18 @@
     <input type="password" class="form-control" id="password2" name="password2" />
   </div>
 
+  <br />
+
   <div class="col-12">
-    <label for="school" class="form-label">School/University</label>
-    <input
-      type="text"
-      class="form-control"
-      id="school"
-      name="school"
-      placeholder="Enter school/university"
-    />
+    <label for="school">school/university</label>
+        <select id="school" name="school">
+            <option value="unimelb">University of Melbourne</option>
+            <option value="monash">Monash University</option>
+            <option value="rmit">RMIT</option>
+        </select>
   </div>
+
+  <br />
 
   <div class="col-12">
     <label for="learning-style">Select Learning Style:</label>
@@ -53,10 +55,18 @@
         </select>
   </div>
 
+  <br />
+
   <div class="col-md-6">
-    <label for="teaching-subject" class="form-label">Teaching Subjects</label>
-    <input type="text" class="form-control" id="teaching-subject" name="teaching-subject"/>
+    <label for="teaching-subject">Teaching Subject</label>
+    <select id="teaching-subject" name="teaching-subject">
+        <option value="computer_science">Computer Science</option>
+        <option value="chemistry">Chemistry</option>
+        <option value="Maths">Maths</option>
+    </select>
   </div>
+
+  <br />
 
   <div class="col-md-4">
     <label for="language">Select Language:</label>
