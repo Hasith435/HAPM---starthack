@@ -1,8 +1,10 @@
 from flask import Blueprint, render_template, session
 from . import db
 from firebase_admin import  auth as firebase_auth
+from website.matcher import matcher_func
 views = Blueprint("views", __name__)
 
+current_subject = ""
 
 # student and teacher login page
 @views.route("/")
@@ -11,12 +13,6 @@ def role_select():
 
 
 # STUDENT PAGES
-# Page to select what type of learner the student is
-@views.route("/learner_type")
-def learner_type():
-    return render_template("learner_type.html")
-
-# subject selection page
 @views.route("/subjects")
 def subjects():
 
@@ -31,14 +27,46 @@ def subjects():
 
     return render_template("subjects_page.html", user_first_name = user_first_name)
 
-
 @views.route("/comp_sci")
 def comp_sci():
-    return render_template("comp_sci_page.html")
+    global current_subject 
+    student_details = db.collection('users').document(session['user_id']).get().to_dict()
+    current_subject = "computer_science"
+    return render_template("comp_sci_page.html", username=student_details['first_name'])
 
 @views.route("/chemistry")
 def chemistry():
+    global current_subject
+    current_subject = "chemistry"
     return render_template("chemistry_index.html")
+
+@views.route("/questions")
+def questions():
+    return render_template("questions.html")
+
+@views.route("/recomender_page")
+def recommendations():
+
+    student_details = db.collection('users').document(session['user_id']).get().to_dict()
+
+    student_school = student_details['school']
+    student_learning_type = student_details['learning type']
+    student_preferred_language = student_details['prefered language']
+    student_subject = current_subject
+
+    tutor_list = matcher_func(student_school, student_learning_type, student_preferred_language, current_subject)
+    print(f"tutor list: {tutor_list}")
+
+    return render_template("tutor_recommendations.html", tutor_list = tutor_list, student_name = student_details['first_name'])
+
+@views.route("/enroll")
+def enroll():
+    student_details = db.collection('users').document(session['user_id']).get().to_dict()
+    student_school = student_details['school']
+    student_learning_type = student_details['learning type']
+    student_preferred_language = student_details['prefered language']
+
+
 
 
 @views.route("/user_display")

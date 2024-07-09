@@ -49,9 +49,8 @@ def sign_up():
         first_name = request.form.get('first_name')
         last_name = request.form.get('last_name')
         school = request.form.get('school')
-        # learning_type = 
-        # prefered_language = 
-        # interested_subjects = 
+        learning_type = request.form.get('learner-type')
+        prefered_language = request.form.get('language')
         password = request.form.get('password1')
         confirm_password = request.form.get("password2")
 
@@ -63,8 +62,8 @@ def sign_up():
         if password == confirm_password:
             user = auth_firebase.create_user_with_email_and_password(email, password)
             user_id = user['localId']
-            db.collection("users").document(user_id).set({'email':email,'first_name':first_name, 'last_name':last_name, 'school':school, 'client_type':'student'})
-            return redirect(url_for('views.learner_type'))
+            db.collection("users").document(user_id).set({'email':email,'first_name':first_name, 'last_name':last_name, 'school':school, 'learning type':learning_type, 'prefered language': prefered_language,'client_type':'student' })
+            return redirect(url_for('auth.login'))
         else:
             flash("Passwords should match", category='error')
     
@@ -82,7 +81,7 @@ def logout():
 
 # AUTHENTICATION FOR TEACHERS
 @auth.route('/login_teachers', methods=['POST', 'GET'])
-def login_teachers():
+def login_teacher():
     if 'user' in session:
         return redirect(url_for("views.subjects"))
 
@@ -97,8 +96,36 @@ def login_teachers():
             session['user_id'] = user['localId']
             session['id_token'] = user['idToken']
 
-            return redirect(url_for("views.subjects"))
+            return redirect(url_for("views.comp_sci_teachers"))
         except:
             flash("Incorrect password or username", category='error')
 
     return render_template("login_teacher.html")
+
+@auth.route('/signup_teacher', methods=['GET', 'POST'])
+def sign_up_teachers():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        first_name = request.form.get('first_name')
+        last_name = request.form.get('last_name')
+        school = request.form.get('school')
+        teaching_method = request.form.get('learning-style')
+        teaching_subject= request.form.get('teaching-subject')
+        language = request.form.get('language')
+        password = request.form.get('password1')
+        confirm_password = request.form.get("password2")
+
+        print(f"email: {email}")
+        print(f"password: {password}")
+
+        
+
+        if password == confirm_password:
+            user = auth_firebase.create_user_with_email_and_password(email, password)
+            user_id = user['localId']
+            db.collection("teachers").document(user_id).set({'email':email,'first_name':first_name, 'last_name':last_name, 'school':school, 'teaching_method':teaching_method, 'teaching_subject': teaching_subject,'language': language,'client_type':'teacher' })
+            return redirect(url_for('auth.login_teacher'))
+        else:
+            flash("Passwords should match", category='error')
+    
+    return render_template("signup_teachers.html")

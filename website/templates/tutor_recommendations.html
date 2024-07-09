@@ -1,0 +1,87 @@
+{% extends "side_bar_base.html" %}
+
+{% block username %}
+{{student_name}}
+{% endblock %}
+
+{% block title %}
+Tutor Recommendation
+{% endblock %}
+
+{% block style_elements %}
+<style>
+    body {
+            background-color: #f4f4f9;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            width: 80%;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+        .tile {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.2s ease-in-out;
+        }
+        .tile:hover {
+            transform: translateY(-10px);
+        }
+        .tile h2 {
+            margin-top: 0;
+            font-size: 24px;
+            color: #333;
+        }
+        .tile p {
+            margin: 8px 0;
+            font-size: 16px;
+            color: #666;
+        }
+        .tile .label {
+            font-weight: bold;
+            color: #555;
+        }
+        .enroll-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #6200ea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+        .enroll-button:hover {
+            background-color: #4b00b0;
+        }
+</style>
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h2>Tutor Details:</h2>
+    </div>
+    <br />
+    {% for tutor in tutor_list %}
+        <div class="tile">
+            
+            <p><span class="label">Email:</span> {{ tutor[0][0] }}</p>
+            <p><span class="label">Teaching Method:</span> {{ tutor[0][2] }}</p>
+            <p><span class="label">Primary Language:</span> {{ tutor[0][3] }}</p>
+
+        </div>
+    {% endfor %}
+{% endblock %}
